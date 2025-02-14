@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>__MSG_extensionName__</title>
+  <style>
+    body {
+      padding: 1em;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .setting-row {
+      margin: 1em 0;
+    }
+    .domain-list {
+      margin-top: 1em;
+    }
+    .domain-entry {
+      display: flex;
+      gap: 0.5em;
+      margin: 0.5em 0;
+    }
+    .domain-entry input[type="text"] {
+      flex-grow: 1;
+    }
+    .help-text {
+      color: #666;
+      font-size: 0.9em;
+      margin: 0.3em 0;
+    }
+    button {
+      padding: 0.3em 0.8em;
+    }
+  </style>
+</head>
+<body>
+  <div class="setting-row">
+    <label>
+      <input type="checkbox" id="enableLogging">
+      <span data-i18n="enableLogging"></span>
+    </label>
+  </div>
+
+  <div class="setting-row">
+    <label>
+      <input type="checkbox" id="restrictDomains">
+      <span data-i18n="restrictDomains"></span>
+    </label>
+    <div class="help-text" data-i18n="restrictDomainsHelp"></div>
+  </div>
+
+  <div class="setting-row domain-list" id="domainListContainer">
+    <h3 data-i18n="allowedDomains"></h3>
+    <div id="domainList"></div>
+    <button id="addDomain" data-i18n="addDomain"></button>
+  </div>
+
+  <div class="setting-row">
+    <label><span data-i18n="urlPattern"></span>:</label>
+    <input type="text" id="urlPattern" style="width: 100%">
+    <div class="help-text" data-i18n="urlPatternHelp"></div>
+  </div>
+
+  <script src="options.js"></script>
+</body>
+</html> 

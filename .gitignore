@@ -1,0 +1,4 @@
+.envrc
+.venv
+shell.nix
+web-ext-artifacts
