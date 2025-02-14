@@ -1,0 +1,35 @@
+{
+  "extensionName": {
+    "message": "Zammad Links in single Tab"
+  },
+  "extensionDescription": {
+    "message": "If clicking a Zammad ticket link, it will be opened in an existing tab and the new tab will be closed."
+  },
+  "enableLogging": {
+    "message": "Enable Debug Logging"
+  },
+  "restrictDomains": {
+    "message": "Restrict to specific domains"
+  },
+  "restrictDomainsHelp": {
+    "message": "If unchecked, the extension will work on all domains"
+  },
+  "allowedDomains": {
+    "message": "Allowed Domains"
+  },
+  "addDomain": {
+    "message": "Add Domain"
+  },
+  "removeDomain": {
+    "message": "Remove"
+  },
+  "domainPlaceholder": {
+    "message": "e.g., support.example.com"
+  },
+  "urlPattern": {
+    "message": "URL Pattern"
+  },
+  "urlPatternHelp": {
+    "message": "Default: /#ticket/zoom/\\d+\nUse JavaScript regular expression syntax. The domain part will be added automatically."
+  }
+}

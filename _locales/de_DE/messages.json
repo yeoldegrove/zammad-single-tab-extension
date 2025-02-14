@@ -1,0 +1,35 @@
+{
+  "extensionName": {
+    "message": "Zammad Link in einem Tab"
+  },
+  "extensionDescription": {
+    "message": "Beim Klick auf einen Zammad-Ticket-Link wird dieser in einem bestehenden Tab geöffnet und der neue Tab geschlossen."
+  },
+  "enableLogging": {
+    "message": "Debug-Protokollierung aktivieren"
+  },
+  "restrictDomains": {
+    "message": "Auf bestimmte Domains beschränken"
+  },
+  "restrictDomainsHelp": {
+    "message": "Wenn deaktiviert, funktioniert die Erweiterung auf allen Domains"
+  },
+  "allowedDomains": {
+    "message": "Erlaubte Domains"
+  },
+  "addDomain": {
+    "message": "Domain hinzufügen"
+  },
+  "removeDomain": {
+    "message": "Entfernen"
+  },
+  "domainPlaceholder": {
+    "message": "z.B. support.example.com"
+  },
+  "urlPattern": {
+    "message": "URL-Muster"
+  },
+  "urlPatternHelp": {
+    "message": "Standard: /#ticket/zoom/\\d+\nVerwenden Sie JavaScript-Regex-Syntax. Der Domain-Teil wird automatisch hinzugefügt."
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "private": true,
+  "scripts": {
+    "prepare:firefox": "node scripts/build.js",
+    "prepare:chrome": "BROWSER=chrome node scripts/build.js",
+    "lint": "npm run prepare:firefox && web-ext lint",
+    "validate:firefox": "npm run prepare:firefox && addons-linter .",
+    "validate:chrome": "npm run prepare:chrome && addons-linter .",
+    "build:firefox": "npm run prepare:firefox && web-ext build && mkdir -p web-ext-artifacts/firefox && cd web-ext-artifacts && for f in *.zip; do mv \"$f\" \"firefox/${f%.zip}-firefox.zip\"; done",
+    "build:chrome": "npm run prepare:chrome && web-ext build && mkdir -p web-ext-artifacts/chrome && cd web-ext-artifacts && for f in *.zip; do mv \"$f\" \"chrome/${f%.zip}-chrome.zip\"; done",
+    "build": "npm run build:firefox && npm run build:chrome",
+    "start:firefox": "npm run prepare:firefox && web-ext run",
+    "start:chrome": "npm run prepare:chrome && web-ext run -t chromium",
+    "publish:firefox": "npm run prepare:firefox && web-ext sign --channel listed --api-key=${AMO_JWT_ISSUER} --api-secret=${AMO_JWT_SECRET}",
+    "publish:chrome": "npm run prepare:chrome && chrome-webstore-upload upload --source web-ext-artifacts/chrome/*-chrome.zip --extension-id ${CHROME_EXTENSION_ID} --client-id ${CHROME_CLIENT_ID} --client-secret ${CHROME_CLIENT_SECRET} --refresh-token ${CHROME_REFRESH_TOKEN} && chrome-webstore-upload publish --extension-id ${CHROME_EXTENSION_ID} --client-id ${CHROME_CLIENT_ID} --client-secret ${CHROME_CLIENT_SECRET} --refresh-token ${CHROME_REFRESH_TOKEN}",
+    "publish": "npm run publish:firefox && npm run publish:chrome"
+  },
+  "devDependencies": {
+    "web-ext": "^7.11.0",
+    "addons-linter": "^6.21.0",
+    "chrome-webstore-upload-cli": "^2.2.2"
+  }
+} 

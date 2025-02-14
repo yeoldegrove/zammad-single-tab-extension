@@ -1,0 +1,10 @@
+.envrc
+.venv
+.web-extension-id
+node_modules
+shell.nix
+web-ext-artifacts
+
+# Generated files
+manifest.json
+extension-package.json

@@ -1,0 +1,76 @@
+name: Release Extension
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+
+  publish:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install dependencies
+        run: npm install
+      
+      - name: Download Firefox artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: firefox-extension
+          path: web-ext-artifacts/firefox
+          
+      - name: Download Chrome artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: chrome-extension
+          path: web-ext-artifacts/chrome
+          
+      - name: Publish Firefox extension
+        run: npm run publish:firefox
+        env:
+          AMO_JWT_ISSUER: ${{ secrets.AMO_JWT_ISSUER }}
+          AMO_JWT_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+          
+      - name: Publish Chrome extension
+        run: npm run publish:chrome
+        env:
+          CHROME_EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+          CHROME_CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+          CHROME_CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+          CHROME_REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+
+  create-release:
+    needs: publish
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Firefox artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: firefox-extension
+          path: web-ext-artifacts/firefox
+          
+      - name: Download Chrome artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: chrome-extension
+          path: web-ext-artifacts/chrome
+        
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            web-ext-artifacts/firefox/*-firefox.zip
+            web-ext-artifacts/chrome/*-chrome.zip
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 

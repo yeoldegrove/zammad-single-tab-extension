@@ -1,0 +1,57 @@
+{
+  "locales": {
+    "en_US": {
+      "name": "Zammad Links in single Tab",
+      "description": "If clicking a Zammad ticket link, it will be opened in an existing tab and the new tab will be closed."
+    },
+    "de_DE": {
+      "name": "Zammad Link in einem Tab",
+      "description": "Beim Klick auf einen Zammad-Ticket-Link wird dieser in einem bestehenden Tab geöffnet und der neue Tab geschlossen."
+    }
+  },
+  "gecko": {
+    "id": "zammad-single-tab-extension-9de82f24@yog.wtf"
+  },
+  "metadata": {
+    "homepage": "https://github.com/yeoldegrove/zammad_browser",
+    "author": "yeoldegrove",
+    "contributors": [],
+    "icons": {
+      "16": "icons/Icon-16.png",
+      "32": "icons/Icon-32.png",
+      "48": "icons/Icon-48.png",
+      "64": "icons/Icon-64.png",
+      "96": "icons/Icon-96.png",
+      "128": "icons/Icon-128.png"
+    }
+  },
+  "permissions": [
+    "tabs",
+    "webNavigation",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "firefox": {
+      "scripts": ["background.js"],
+      "type": "module"
+    },
+    "chrome": {
+      "service_worker": "background.js",
+      "type": "module"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "icon_sizes": [16, 32, 48, 64, 96, 128],
+  "default_version": "0.0.1",
+  "license": {
+    "type": "GPL-3.0-or-later",
+    "url": "https://www.gnu.org/licenses/gpl-3.0.txt",
+    "text": "GNU General Public License v3.0 or later"
+  }
+} 
